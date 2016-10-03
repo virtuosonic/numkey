@@ -5,6 +5,8 @@
 #include <wx/string.h>
 //*)
 
+const int precision = 50;
+
 //(*IdInit(NumKey)
 const long NumKey::ID_STATICTEXT1 = wxNewId();
 const long NumKey::ID_BUTTON1 = wxNewId();
@@ -97,18 +99,18 @@ double NumKey::GetValue()
 
 void NumKey::SetValue(const double& val)
 {
-	StaticText1->SetLabel(wxString::FromDouble(val));
+	StaticText1->SetLabel(wxString::FromDouble(val,precision));
 }
 
 void NumKey::AppendNumber(unsigned num)
 {
 	wxString tstr;
 	if(StaticText1->GetLabel() == "0")
-		StaticText1->SetLabel(wxString::FromDouble(num));
+		StaticText1->SetLabel(wxString::FromDouble(num,precision));
 	else
 	{
 		tstr = StaticText1->GetLabel();
-		tstr.Append(wxString::FromDouble(num));
+		tstr.Append(wxString::FromDouble(num,precision));
 		StaticText1->SetLabel(tstr);
 	}
 }
@@ -134,7 +136,7 @@ void NumKey::OnButton12Click(wxCommandEvent& event)
 	double tval = 0x00;
 	StaticText1->GetLabel().ToDouble(&tval);
 	tval *= -1;
-	StaticText1->SetLabel(wxString::FromDouble(tval));
+	StaticText1->SetLabel(wxString::FromDouble(tval,precision));
 }
 
 void NumKey::OnButton1Click(wxCommandEvent& event)
